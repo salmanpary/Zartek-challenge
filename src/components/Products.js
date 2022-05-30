@@ -285,7 +285,7 @@ const Products = () => {
                     {item.dish_description}
                   </div>
                 </div>
-                <div className="flex justify-end sm:ml-auto">
+                <div className="flex justify-end  flex-auto">
                   <div className="whitespace-nowrap font-bold pr-2 pt-8">
                     {item.dish_calories} calories
                   </div>
