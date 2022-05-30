@@ -4,7 +4,7 @@ import {FaShoppingCart} from "react-icons/fa"
 const Navbar=()=>{
     return(
         <nav className="flex m-3">
-<FiArrowLeft color="gray" size="1.5em" />
+<FiArrowLeft color="gray" size="1.5em" className="md:hidden"/>
 <a href="/" className="text-tiny font-bold text-gray-500 px-3">UNI Resto Cafe</a>
 <a href="/" className="ml-auto text-tiny font-semibold text-gray-500 px-3">My Orders</a>
 <div className="">

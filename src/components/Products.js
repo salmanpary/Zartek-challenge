@@ -2,13 +2,22 @@ import axios from "axios"
 import React,{useState,useEffect} from "react"
 import { ScrollMenu } from 'react-horizontal-scrolling-menu';
 import {GrSquare} from 'react-icons/gr'
+
 const Custom=()=>{
     return <p className="text-red-500">
         customization available
     </p>
 }
+const NotAvailable=()=>{
+    return(
+        <div className="text-red-500">
+            Not available
+        </div>
+    )
+}
 const Button=()=>{
     const[number,setnumber]=useState(0)
+    
     return(
         <>
         <div className="button bg-green-500 flex justify-evenly w-24 rounded-2xl">
@@ -18,17 +27,20 @@ const Button=()=>{
             }
             
             setnumber(number-1)
+
         }}>
             -
             </button>
             <div className="number text-white">{number}</div>
             <button className="text-white" onClick={()=>{
                 setnumber(number+1)
+               
             }}>+</button>
         </div>
         </>
     )
 }
+
 const Products=()=>{
     const [section,setsection]=useState([])
     const[selected,setselected]=useState('Salads and Soup')
@@ -59,7 +71,7 @@ const Products=()=>{
         
     
     };
-
+    
 return (
     <>
     <div className="whitespace-nowrap">
@@ -95,7 +107,7 @@ return (
 {item.dish_description}
             </div>
                 </div>
-                <div className="flex justify-end">
+                <div className="flex justify-end new:ml-auto">
                 <div className="whitespace-nowrap font-bold pr-2 pt-8">
                     {item.dish_calories} calories
                 </div>
@@ -112,8 +124,9 @@ return (
             <Button></Button></div>
             <div className="pl-7">
             {item.addonCat.length>0 ?<Custom></Custom>:null}
-
+            {!item.dish_Availability&&<NotAvailable/>}
             </div>
+           
 <hr className="m-4 bg-slate-300"  />
                 
                 </>
@@ -137,7 +150,7 @@ return (
         {item.dish_description}
                     </div>
                         </div>
-                        <div className="flex justify-end">
+                        <div className="flex justify-end sm:ml-auto">
                         <div className="whitespace-nowrap font-bold pr-2 pt-8">
                             {item.dish_calories} calories
                         </div>
@@ -154,7 +167,7 @@ return (
                     <Button></Button></div>
                     <div className="pl-7">
                     {item.addonCat.length>0 ?<Custom></Custom>:null}
-        
+                    {!item.dish_Availability&&<NotAvailable/>}
                     </div>
         <hr className="m-4 bg-slate-300"  />
                         
@@ -180,7 +193,7 @@ return (
             {item.dish_description}
                         </div>
                             </div>
-                            <div className="flex justify-end">
+                            <div className="flex justify-end sm:ml-auto">
                             <div className="whitespace-nowrap font-bold pr-2 pt-8">
                                 {item.dish_calories} calories
                             </div>
@@ -197,7 +210,7 @@ return (
                         <Button></Button></div>
                         <div className="pl-7">
                         {item.addonCat.length>0 ?<Custom></Custom>:null}
-            
+                        {!item.dish_Availability&&<NotAvailable/>}
                         </div>
             <hr className="m-4 bg-slate-300"  />
                             
@@ -224,7 +237,7 @@ return (
             {item.dish_description}
                         </div>
                             </div>
-                            <div className="flex justify-end">
+                            <div className="flex justify-end sm:ml-auto">
                             <div className="whitespace-nowrap font-bold pr-2 pt-8">
                                 {item.dish_calories} calories
                             </div>
@@ -250,7 +263,7 @@ return (
                 }
             )}
             {
-                selected==='Biriyani' && biriyani && biriyani.map((item,index)=>{
+                selected==='Biryani' && biriyani && biriyani.map((item,index)=>{
                     return(<>
                         <div className="flex">
                             <div>
@@ -267,7 +280,7 @@ return (
             {item.dish_description}
                         </div>
                             </div>
-                            <div className="flex justify-end">
+                            <div className="flex justify-end sm:ml-auto">
                             <div className="whitespace-nowrap font-bold pr-2 pt-8">
                                 {item.dish_calories} calories
                             </div>
@@ -284,7 +297,7 @@ return (
                         <Button></Button></div>
                         <div className="pl-7">
                         {item.addonCat.length>0 ?<Custom></Custom>:null}
-            
+                        {!item.dish_Availability&&<NotAvailable/>}
                         </div>
             <hr className="m-4 bg-slate-300"  />
                             
@@ -327,7 +340,7 @@ return (
                         <Button></Button></div>
                         <div className="pl-7">
                         {item.addonCat.length>0 ?<Custom></Custom>:null}
-            
+                        {!item.dish_Availability&&<NotAvailable/>}
                         </div>
             <hr className="m-4 bg-slate-300"  />
                             
