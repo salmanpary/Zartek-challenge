@@ -125,7 +125,7 @@ const Products = () => {
                 </div>
               </div>
               <div className="pl-9 pt-2 pb-2">
-                <Button></Button>
+               { item.dish_Availability ?<Button></Button>:null}
               </div>
               <div className="pl-7">
                 {item.addonCat.length > 0 ? <Custom></Custom> : null}
@@ -212,7 +212,7 @@ const Products = () => {
                 </div>
               </div>
               <div className="pl-9 pt-2 pb-2">
-                <Button></Button>
+              { item.dish_Availability ?<Button></Button>:null}
               </div>
               <div className="pl-7">
                 {item.addonCat.length > 0 ? <Custom></Custom> : null}
@@ -255,10 +255,11 @@ const Products = () => {
                 </div>
               </div>
               <div className="pl-9 pt-2 pb-2">
-                <Button></Button>
+              { item.dish_Availability ?<Button></Button>:null}
               </div>
               <div className="pl-7">
                 {item.addonCat.length > 0 ? <Custom></Custom> : null}
+                {!item.dish_Availability && <NotAvailable />}
               </div>
               <hr className="m-4 bg-slate-300" />
             </>
@@ -285,7 +286,7 @@ const Products = () => {
                     {item.dish_description}
                   </div>
                 </div>
-                <div className="flex justify-end  flex-auto">
+                <div className="flex justify-end flex-auto">
                   <div className="whitespace-nowrap font-bold pr-2 pt-8">
                     {item.dish_calories} calories
                   </div>
@@ -297,7 +298,7 @@ const Products = () => {
                 </div>
               </div>
               <div className="pl-9 pt-2 pb-2">
-                <Button></Button>
+              { item.dish_Availability ?<Button></Button>:null}
               </div>
               <div className="pl-7">
                 {item.addonCat.length > 0 ? <Custom></Custom> : null}
@@ -340,7 +341,7 @@ const Products = () => {
                 </div>
               </div>
               <div className="pl-9 pt-2 pb-2">
-                <Button></Button>
+              { item.dish_Availability ?<Button></Button>:null}
               </div>
               <div className="pl-7">
                 {item.addonCat.length > 0 ? <Custom></Custom> : null}
