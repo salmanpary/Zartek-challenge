@@ -1,8 +1,8 @@
 import React,{useState} from "react";
-const Order=()=>{
+const Order=(props)=>{
     return (
         <>
-        <h1>shit</h1>
+        shit
         </>
     )
 

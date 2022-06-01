@@ -11,13 +11,11 @@ const NotAvailable = () => {
 };
 const Button = (props) => {
   const [number, setnumber] = useState(0);
-  
 
   const increment = () => {
-   
     setnumber(number + 1);
     props.damn(props.cart + 1);
-
+    props.setarr([...props.arr, props.data]);
   };
   const decrement = () => {
     if (number == 0) {
@@ -25,7 +23,6 @@ const Button = (props) => {
     }
     setnumber(number - 1);
     props.damn(props.cart - 1);
-
   };
   return (
     <>
@@ -51,7 +48,10 @@ const Products = (props) => {
   const [sea, setsea] = useState([]);
   const [biriyani, setbiriyani] = useState([]);
   const [fastfood, setfastfood] = useState([]);
-  const[cart,setcart]=useState(0)
+  const [cart, setcart] = useState(0);
+  const [arr, setarr] = useState([]);
+  const [filteredarr, setfilteredarr] = useState([]);
+  const [counts, setcounts] = useState({});
   useEffect(() => {
     axios
       .get("https://run.mocky.io/v3/a67edc87-49c7-4822-9cb4-e2ef94cb3099")
@@ -70,9 +70,10 @@ const Products = (props) => {
   const clickhandle = (itemId) => () => {
     setselected(itemId);
   };
-  useEffect(()=>{
+  useEffect(() => {
     props.onsave(cart);
-  },[cart])
+    props.savearr(arr);
+  }, [cart]);
 
   return (
     <>
@@ -102,7 +103,6 @@ const Products = (props) => {
         salad &&
         salad.map((item, index) => {
           return (
-          
             <div key={item.dish_id}>
               <div className="flex">
                 <div>
@@ -132,7 +132,19 @@ const Products = (props) => {
                 </div>
               </div>
               <div className="pl-9 pt-2 pb-2">
-                {item.dish_Availability ? <Button damn={setcart} cart={cart}></Button> : null}
+                {item.dish_Availability ? (
+                  <Button
+                    damn={setcart}
+                    cart={cart}
+                    data={item}
+                    arr={arr}
+                    setarr={setarr}
+                    filteredarr={filteredarr}
+                    setfilteredarr={setfilteredarr}
+                    counts={counts}
+                    setcounts={setcounts}
+                  ></Button>
+                ) : null}
               </div>
               <div className="pl-7">
                 {item.addonCat.length > 0 ? <Custom></Custom> : null}
@@ -140,15 +152,13 @@ const Products = (props) => {
               </div>
 
               <hr className="m-4 bg-slate-300" />
-              </div>
-        
+            </div>
           );
         })}
       {selected === "From The Barnyard" &&
         barn &&
         barn.map((item, index) => {
           return (
-         
             <div key={item.dish_id}>
               <div className="flex">
                 <div>
@@ -178,25 +188,31 @@ const Products = (props) => {
                 </div>
               </div>
               <div className="pl-9 pt-2 pb-2">
-                <Button damn={setcart} cart={cart}></Button>
+              <Button
+                    damn={setcart}
+                    cart={cart}
+                    data={item}
+                    arr={arr}
+                    setarr={setarr}
+                    filteredarr={filteredarr}
+                    setfilteredarr={setfilteredarr}
+                    counts={counts}
+                    setcounts={setcounts}
+                  ></Button>
               </div>
               <div className="pl-7">
                 {item.addonCat.length > 0 ? <Custom></Custom> : null}
                 {!item.dish_Availability && <NotAvailable />}
               </div>
               <hr className="m-4 bg-slate-300" />
-              </div>
-        
+            </div>
           );
         })}
       {selected === "From the Hen House" &&
         hen &&
         hen.map((item, index) => {
           return (
-       
             <div key={item.dish_id}>
-
-            
               <div className="flex">
                 <div>
                   <div className="inline-flex">
@@ -225,25 +241,33 @@ const Products = (props) => {
                 </div>
               </div>
               <div className="pl-9 pt-2 pb-2">
-                {item.dish_Availability ? <Button damn={setcart} cart={cart}></Button> : null}
+                {item.dish_Availability ? (
+                  <Button
+                  damn={setcart}
+                  cart={cart}
+                  data={item}
+                  arr={arr}
+                  setarr={setarr}
+                  filteredarr={filteredarr}
+                  setfilteredarr={setfilteredarr}
+                  counts={counts}
+                  setcounts={setcounts}
+                ></Button>
+                ) : null}
               </div>
               <div className="pl-7">
                 {item.addonCat.length > 0 ? <Custom></Custom> : null}
                 {!item.dish_Availability && <NotAvailable />}
               </div>
               <hr className="m-4 bg-slate-300" />
-              </div>
-      
+            </div>
           );
         })}
       {selected === "Fresh From The Sea" &&
         sea &&
         sea.map((item, index) => {
           return (
-       
             <div key={item.dish_id}>
-
-          
               <div className="flex">
                 <div>
                   <div className="inline-flex">
@@ -272,25 +296,33 @@ const Products = (props) => {
                 </div>
               </div>
               <div className="pl-9 pt-2 pb-2">
-                {item.dish_Availability ? <Button damn={setcart} cart={cart}></Button> : null}
+                {item.dish_Availability ? (
+                 <Button
+                 damn={setcart}
+                 cart={cart}
+                 data={item}
+                 arr={arr}
+                 setarr={setarr}
+                 filteredarr={filteredarr}
+                 setfilteredarr={setfilteredarr}
+                 counts={counts}
+                 setcounts={setcounts}
+               ></Button>
+                ) : null}
               </div>
               <div className="pl-7">
                 {item.addonCat.length > 0 ? <Custom></Custom> : null}
                 {!item.dish_Availability && <NotAvailable />}
               </div>
               <hr className="m-4 bg-slate-300" />
-              </div>
-        
+            </div>
           );
         })}
       {selected === "Biryani" &&
         biriyani &&
         biriyani.map((item, index) => {
           return (
-     
             <div key={item.dish_id}>
-
-           
               <div className="flex">
                 <div>
                   <div className="inline-flex">
@@ -319,25 +351,33 @@ const Products = (props) => {
                 </div>
               </div>
               <div className="pl-9 pt-2 pb-2">
-                {item.dish_Availability ? <Button damn={setcart} cart={cart}></Button> : null}
+                {item.dish_Availability ? (
+                <Button
+                damn={setcart}
+                cart={cart}
+                data={item}
+                arr={arr}
+                setarr={setarr}
+                filteredarr={filteredarr}
+                setfilteredarr={setfilteredarr}
+                counts={counts}
+                setcounts={setcounts}
+              ></Button>
+                ) : null}
               </div>
               <div className="pl-7">
                 {item.addonCat.length > 0 ? <Custom></Custom> : null}
                 {!item.dish_Availability && <NotAvailable />}
               </div>
               <hr className="m-4 bg-slate-300" />
-              </div>
-        
+            </div>
           );
         })}
       {selected === "Fast Food" &&
         fastfood &&
         fastfood.map((item, index) => {
           return (
-
             <div key={item.dish_id}>
-
-            
               <div className="flex">
                 <div>
                   <div className="inline-flex">
@@ -366,15 +406,26 @@ const Products = (props) => {
                 </div>
               </div>
               <div className="pl-9 pt-2 pb-2">
-                {item.dish_Availability ? <Button damn={setcart} cart={cart}></Button> : null}
+                {item.dish_Availability ? (
+                  <Button
+                  damn={setcart}
+                  cart={cart}
+                  data={item}
+                  arr={arr}
+                  setarr={setarr}
+                  filteredarr={filteredarr}
+                  setfilteredarr={setfilteredarr}
+                  counts={counts}
+                  setcounts={setcounts}
+                ></Button>
+                ) : null}
               </div>
               <div className="pl-7">
                 {item.addonCat.length > 0 ? <Custom></Custom> : null}
                 {!item.dish_Availability && <NotAvailable />}
               </div>
               <hr className="m-4 bg-slate-300" />
-              </div>
-          
+            </div>
           );
         })}
     </>
