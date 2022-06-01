@@ -7,15 +7,15 @@ const Navbar = (props) => {
     <nav className="flex m-3">
       <FiArrowLeft color="gray" size="1.5em" className="md:hidden" />
       <Link to="/" className="text-gray-800 text-xl font-bold mr-2">
-        <a className="text-tiny font-bold text-gray-500 px-3">UNI Resto Cafe</a>
+        <div className="text-tiny font-bold text-gray-500 px-3">UNI Resto Cafe</div>
       </Link>
       <Link
         to="/orders"
         className="ml-auto text-tiny font-bold text-gray-500 px-3"
       >
-        <a className="ml-auto text-tiny font-semibold text-gray-500 px-3">
+        <div className="ml-auto text-tiny font-semibold text-gray-500 px-3">
           My Orders
-        </a>
+        </div>
       </Link>
 
       <div className="">
