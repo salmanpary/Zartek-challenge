@@ -8,21 +8,26 @@ function App() {
   const [cartnumber, setcartnumber] = useState(0);
   const [arr, setarr] = useState([]);
   const [filteredarr, setfilteredarr] = useState([]);
-  const [counts, setcounts] = useState({});
-
+  const[newweak,setnewweek]=useState(new WeakMap())
   const saving = (value) => {
     setcartnumber(value);
   };
   const savearr = (arr) => {
     setarr(arr);
   };
+  const saveweakmap=(value)=>{
+    setnewweek(value)
+  }
+
   useEffect(() => {
     console.log(arr);
     console.log(arr.length);
     let unique = arr.filter((item, index) => arr.indexOf(item) === index);
     setfilteredarr(unique);
     console.log(unique);
-  }, [arr]);
+    console.log(newweak)
+  }, [arr,newweak]);
+
 
   return (
     <BrowserRouter>
@@ -32,16 +37,19 @@ function App() {
           element={
             <>
               <Navbar value={cartnumber}></Navbar>
-              <Products onsave={saving} savearr={savearr}></Products>
+              <Products onsave={saving} savearr={savearr} saveweakmap={saveweakmap}></Products>
             </>
           }
         />
-        <Route path="/orders" element={
-          <>
-        <Navbar value={cartnumber}></Navbar>
-        <Order filteredarr={filteredarr} setfilteredarr={setfilteredarr}/>
-        </>
-        } />
+        <Route
+          path="/orders"
+          element={
+            <>
+              <Navbar value={cartnumber}></Navbar>
+              <Order item={filteredarr} setfilteredarr={setfilteredarr} newweak={newweak} setnewweek={setnewweek} />
+            </>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
