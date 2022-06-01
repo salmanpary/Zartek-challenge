@@ -13,17 +13,17 @@ const Button = (props) => {
   const [number, setnumber] = useState(0);
   function getOccurrence(array, value) {
     var count = 0;
-    array.forEach((v) => (v === value && count++));
+    array.forEach((v) => v === value && count++);
     return count;
-}
- 
+  }
+
   const increment = () => {
     setnumber(number + 1);
     props.damn(props.cart + 1);
     props.setarr([...props.arr, props.data]);
-   props.weakmap.set(props.data,getOccurrence(props.arr, props.data)+1);
+    props.weakmap.set(props.data, getOccurrence(props.arr, props.data) + 1);
 
-   props.setweakmap(props.weakmap);
+    props.setweakmap(props.weakmap);
     console.log(getOccurrence(props.arr, props.data));
   };
   const decrement = () => {
@@ -32,15 +32,12 @@ const Button = (props) => {
     }
     setnumber(number - 1);
     props.damn(props.cart - 1);
-    const index=props.arr.indexOf(props.data);
-    props.arr.splice(index,1);
+    const index = props.arr.indexOf(props.data);
+    props.arr.splice(index, 1);
     props.setarr([...props.arr]);
-    props.weakmap.set(props.data,getOccurrence(props.arr, props.data));
-   
+    props.weakmap.set(props.data, getOccurrence(props.arr, props.data));
   };
-  useEffect(()=>{
-
-  },[])
+  useEffect(() => {}, []);
   return (
     <>
       <div className="button bg-green-500 flex justify-evenly w-24 rounded-2xl">
@@ -69,7 +66,7 @@ const Products = (props) => {
   const [arr, setarr] = useState([]);
   const [filteredarr, setfilteredarr] = useState([]);
   const [counts, setcounts] = useState({});
- const[weakmap,setweakmap]=useState(new WeakMap());
+  const [weakmap, setweakmap] = useState(new WeakMap());
   useEffect(() => {
     axios
       .get("https://run.mocky.io/v3/a67edc87-49c7-4822-9cb4-e2ef94cb3099")
@@ -93,7 +90,7 @@ const Products = (props) => {
     props.savearr(arr);
     props.saveweakmap(weakmap);
   }, [cart]);
-  
+
   return (
     <>
       <div className="whitespace-nowrap">
@@ -209,19 +206,19 @@ const Products = (props) => {
                 </div>
               </div>
               <div className="pl-9 pt-2 pb-2">
-              <Button
-                    damn={setcart}
-                    cart={cart}
-                    data={item}
-                    arr={arr}
-                    setarr={setarr}
-                    filteredarr={filteredarr}
-                    setfilteredarr={setfilteredarr}
-                    counts={counts}
-                    setcounts={setcounts}
-                    weakmap={weakmap}
-                    setweakmap={setweakmap}
-                  ></Button>
+                <Button
+                  damn={setcart}
+                  cart={cart}
+                  data={item}
+                  arr={arr}
+                  setarr={setarr}
+                  filteredarr={filteredarr}
+                  setfilteredarr={setfilteredarr}
+                  counts={counts}
+                  setcounts={setcounts}
+                  weakmap={weakmap}
+                  setweakmap={setweakmap}
+                ></Button>
               </div>
               <div className="pl-7">
                 {item.addonCat.length > 0 ? <Custom></Custom> : null}
@@ -266,18 +263,18 @@ const Products = (props) => {
               <div className="pl-9 pt-2 pb-2">
                 {item.dish_Availability ? (
                   <Button
-                  damn={setcart}
-                  cart={cart}
-                  data={item}
-                  arr={arr}
-                  setarr={setarr}
-                  filteredarr={filteredarr}
-                  setfilteredarr={setfilteredarr}
-                  counts={counts}
-                  setcounts={setcounts}
-                  weakmap={weakmap}
+                    damn={setcart}
+                    cart={cart}
+                    data={item}
+                    arr={arr}
+                    setarr={setarr}
+                    filteredarr={filteredarr}
+                    setfilteredarr={setfilteredarr}
+                    counts={counts}
+                    setcounts={setcounts}
+                    weakmap={weakmap}
                     setweakmap={setweakmap}
-                ></Button>
+                  ></Button>
                 ) : null}
               </div>
               <div className="pl-7">
@@ -322,20 +319,19 @@ const Products = (props) => {
               </div>
               <div className="pl-9 pt-2 pb-2">
                 {item.dish_Availability ? (
-                 <Button
-                 damn={setcart}
-                 cart={cart}
-                 data={item}
-                 arr={arr}
-                 setarr={setarr}
-                 filteredarr={filteredarr}
-                 setfilteredarr={setfilteredarr}
-                 counts={counts}
-                 setcounts={setcounts}
-                 weakmap={weakmap}
+                  <Button
+                    damn={setcart}
+                    cart={cart}
+                    data={item}
+                    arr={arr}
+                    setarr={setarr}
+                    filteredarr={filteredarr}
+                    setfilteredarr={setfilteredarr}
+                    counts={counts}
+                    setcounts={setcounts}
+                    weakmap={weakmap}
                     setweakmap={setweakmap}
-                
-               ></Button>
+                  ></Button>
                 ) : null}
               </div>
               <div className="pl-7">
@@ -380,19 +376,19 @@ const Products = (props) => {
               </div>
               <div className="pl-9 pt-2 pb-2">
                 {item.dish_Availability ? (
-                <Button
-                damn={setcart}
-                cart={cart}
-                data={item}
-                arr={arr}
-                setarr={setarr}
-                filteredarr={filteredarr}
-                setfilteredarr={setfilteredarr}
-                counts={counts}
-                setcounts={setcounts}
-                weakmap={weakmap}
+                  <Button
+                    damn={setcart}
+                    cart={cart}
+                    data={item}
+                    arr={arr}
+                    setarr={setarr}
+                    filteredarr={filteredarr}
+                    setfilteredarr={setfilteredarr}
+                    counts={counts}
+                    setcounts={setcounts}
+                    weakmap={weakmap}
                     setweakmap={setweakmap}
-              ></Button>
+                  ></Button>
                 ) : null}
               </div>
               <div className="pl-7">
@@ -438,18 +434,18 @@ const Products = (props) => {
               <div className="pl-9 pt-2 pb-2">
                 {item.dish_Availability ? (
                   <Button
-                  damn={setcart}
-                  cart={cart}
-                  data={item}
-                  arr={arr}
-                  setarr={setarr}
-                  filteredarr={filteredarr}
-                  setfilteredarr={setfilteredarr}
-                  counts={counts}
-                  setcounts={setcounts}
-                  weakmap={weakmap}
+                    damn={setcart}
+                    cart={cart}
+                    data={item}
+                    arr={arr}
+                    setarr={setarr}
+                    filteredarr={filteredarr}
+                    setfilteredarr={setfilteredarr}
+                    counts={counts}
+                    setcounts={setcounts}
+                    weakmap={weakmap}
                     setweakmap={setweakmap}
-                ></Button>
+                  ></Button>
                 ) : null}
               </div>
               <div className="pl-7">
@@ -465,4 +461,4 @@ const Products = (props) => {
 };
 
 export default Products;
-export {Custom, NotAvailable,Button};
+export { Custom, NotAvailable, Button };
