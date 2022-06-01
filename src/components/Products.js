@@ -11,19 +11,36 @@ const NotAvailable = () => {
 };
 const Button = (props) => {
   const [number, setnumber] = useState(0);
-
+  function getOccurrence(array, value) {
+    var count = 0;
+    array.forEach((v) => (v === value && count++));
+    return count;
+}
+ 
   const increment = () => {
     setnumber(number + 1);
     props.damn(props.cart + 1);
     props.setarr([...props.arr, props.data]);
+   props.weakmap.set(props.data,getOccurrence(props.arr, props.data)+1);
+
+   props.setweakmap(props.weakmap);
+    console.log(getOccurrence(props.arr, props.data));
   };
   const decrement = () => {
-    if (number == 0) {
+    if (number === 0) {
       return;
     }
     setnumber(number - 1);
     props.damn(props.cart - 1);
+    const index=props.arr.indexOf(props.data);
+    props.arr.splice(index,1);
+    props.setarr([...props.arr]);
+    props.weakmap.set(props.data,getOccurrence(props.arr, props.data));
+   
   };
+  useEffect(()=>{
+
+  },[])
   return (
     <>
       <div className="button bg-green-500 flex justify-evenly w-24 rounded-2xl">
@@ -52,6 +69,7 @@ const Products = (props) => {
   const [arr, setarr] = useState([]);
   const [filteredarr, setfilteredarr] = useState([]);
   const [counts, setcounts] = useState({});
+ const[weakmap,setweakmap]=useState(new WeakMap());
   useEffect(() => {
     axios
       .get("https://run.mocky.io/v3/a67edc87-49c7-4822-9cb4-e2ef94cb3099")
@@ -73,8 +91,9 @@ const Products = (props) => {
   useEffect(() => {
     props.onsave(cart);
     props.savearr(arr);
+    props.saveweakmap(weakmap);
   }, [cart]);
-
+  
   return (
     <>
       <div className="whitespace-nowrap">
@@ -87,7 +106,7 @@ const Products = (props) => {
                   className={
                     item.menu_category === selected
                       ? `p-2 text-red-500 underline underline-offset-8  decoration-red-700 font-bold`
-                      : `p-2 font-bold`
+                      : `p-2 font-bold hover:cursor-pointer`
                   }
                   key={item.menu_category_id}
                   onClick={clickhandle(item.menu_category)}
@@ -143,6 +162,8 @@ const Products = (props) => {
                     setfilteredarr={setfilteredarr}
                     counts={counts}
                     setcounts={setcounts}
+                    weakmap={weakmap}
+                    setweakmap={setweakmap}
                   ></Button>
                 ) : null}
               </div>
@@ -198,6 +219,8 @@ const Products = (props) => {
                     setfilteredarr={setfilteredarr}
                     counts={counts}
                     setcounts={setcounts}
+                    weakmap={weakmap}
+                    setweakmap={setweakmap}
                   ></Button>
               </div>
               <div className="pl-7">
@@ -252,6 +275,8 @@ const Products = (props) => {
                   setfilteredarr={setfilteredarr}
                   counts={counts}
                   setcounts={setcounts}
+                  weakmap={weakmap}
+                    setweakmap={setweakmap}
                 ></Button>
                 ) : null}
               </div>
@@ -307,6 +332,9 @@ const Products = (props) => {
                  setfilteredarr={setfilteredarr}
                  counts={counts}
                  setcounts={setcounts}
+                 weakmap={weakmap}
+                    setweakmap={setweakmap}
+                
                ></Button>
                 ) : null}
               </div>
@@ -362,6 +390,8 @@ const Products = (props) => {
                 setfilteredarr={setfilteredarr}
                 counts={counts}
                 setcounts={setcounts}
+                weakmap={weakmap}
+                    setweakmap={setweakmap}
               ></Button>
                 ) : null}
               </div>
@@ -417,6 +447,8 @@ const Products = (props) => {
                   setfilteredarr={setfilteredarr}
                   counts={counts}
                   setcounts={setcounts}
+                  weakmap={weakmap}
+                    setweakmap={setweakmap}
                 ></Button>
                 ) : null}
               </div>
@@ -433,3 +465,4 @@ const Products = (props) => {
 };
 
 export default Products;
+export {Custom, NotAvailable,Button};
